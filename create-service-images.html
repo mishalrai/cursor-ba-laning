@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Image Generator</title>
+</head>
+<body>
+    <canvas id="canvas1" width="1200" height="800"></canvas>
+    <canvas id="canvas2" width="1200" height="800"></canvas>
+    <canvas id="canvas3" width="1200" height="800"></canvas>
+    
+    <script>
+        // Create service image placeholders
+        const images = [
+            { id: 'canvas1', color: '#8B7355', text: 'EVENTS' },
+            { id: 'canvas2', color: '#6B8E7F', text: 'FLORAL DECORATION' },
+            { id: 'canvas3', color: '#B4A89E', text: 'WEDDING CREATORS' }
+        ];
+        
+        images.forEach(img => {
+            const canvas = document.getElementById(img.id);
+            const ctx = canvas.getContext('2d');
+            
+            // Fill background
+            ctx.fillStyle = img.color;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add gradient overlay
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(0, 0, 0, 0.2)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 60px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(img.text, canvas.width / 2, canvas.height / 2);
+        });
+        
+        console.log('Service placeholder images created. Right-click each canvas to save as PNG.');
+    </script>
+</body>
+</html>
+
